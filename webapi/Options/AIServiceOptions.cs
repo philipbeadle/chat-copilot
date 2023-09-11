@@ -74,4 +74,16 @@ public sealed class AIServiceOptions
     /// </summary>
     [Required, NotEmptyOrWhitespace]
     public string Key { get; set; } = string.Empty;
+
+    /// <summary>
+    /// (Azure OpenAI only) Azure OpenAI endpoint for the Embedding model.
+    /// </summary>
+    [RequiredOnPropertyValue(nameof(Type), AIServiceType.AzureOpenAI, notEmptyOrWhitespace: true)]
+    public string EmbeddingEndpoint { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Key to access the AI service for the Embedding model.
+    /// </summary>
+    [Required, NotEmptyOrWhitespace]
+    public string EmbeddingKey { get; set; } = string.Empty;
 }
