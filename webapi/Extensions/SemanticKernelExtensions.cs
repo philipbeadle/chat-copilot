@@ -340,7 +340,7 @@ internal static class SemanticKernelExtensions
             AIServiceOptions.AIServiceType.AzureOpenAI
                 => new AzureTextEmbeddingGeneration(options.Models.Embedding, options.EmbeddingEndpoint, options.EmbeddingKey, httpClient: httpClient, loggerFactory: loggerFactory),
             AIServiceOptions.AIServiceType.OpenAI
-                => new OpenAITextEmbeddingGeneration(options.Models.Embedding, options.EmbeddingKey, httpClient: httpClient, loggerFactory: loggerFactoryr),
+                => new OpenAITextEmbeddingGeneration(options.Models.Embedding, options.EmbeddingKey, httpClient: httpClient, loggerFactory: loggerFactory),
             _
                 => throw new ArgumentException("Invalid AIService value in embeddings backend settings"),
         };
