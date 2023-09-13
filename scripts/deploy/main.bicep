@@ -26,7 +26,7 @@ param memoryPipelinePackageUri string = 'https://aka.ms/copilotchat/memorypipeli
   'AzureOpenAI'
   'OpenAI'
 ])
-param aiService string = 'AzureOpenAI'
+param aiService string = 'OpenAI'
 
 @description('Model to use for chat completions')
 param completionModel string = 'gpt-35-turbo'
@@ -66,7 +66,7 @@ param deployCosmosDB bool = true
   'Qdrant'
   'Postgres'
 ])
-param memoryStore string = 'Volatile'
+param memoryStore string = 'AzureCognitiveSearch'
 
 @description('Whether to deploy Azure Speech Services to enable input by voice')
 param deploySpeechServices bool = true
