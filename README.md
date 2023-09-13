@@ -46,7 +46,6 @@ You will need the following items to run the sample:
 
    ```powershell
 
-   .\Configure.ps1 -AiService OpenAI -APIKey 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 -FrontendClientId 74ba33bd-d787-4d27-bbd5-afc689254619 -BackendClientId 2fc4fddd-5743-46ae-8ef6-cc37b7a502bc -TenantId 536a0f54-15ee-40d4-b156-0d72c430d4eb -Instance https://login.microsoftonline.com/
    .\Configure.ps1 -AIService {AI_SERVICE} -APIKey {API_KEY} -Endpoint {AZURE_OPENAI_ENDPOINT}
    ```
 
