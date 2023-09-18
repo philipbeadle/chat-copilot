@@ -144,7 +144,7 @@ const App: FC = () => {
                     <UnauthenticatedTemplate>
                         <div className={classes.container}>
                             <div className={classes.header}>
-                                <Subtitle1 as="h1">Chat Copilot</Subtitle1>
+                                <Subtitle1 as="h1">Redgrid GPT Energy System Copilot</Subtitle1>
                             </div>
                             {appState === AppState.SigningOut && <Loading text="Signing you out..." />}
                             {appState !== AppState.SigningOut && <Login />}
@@ -173,7 +173,7 @@ const Chat = ({
     return (
         <div className={classes.container}>
             <div className={classes.header}>
-                <Subtitle1 as="h1">Chat Copilot</Subtitle1>
+                <Subtitle1 as="h1">Redgrid GPT Energy System Copilot</Subtitle1>
                 {appState > AppState.SettingUserInfo && (
                     <div className={classes.cornerItems}>
                         <div className={classes.cornerItems}>
