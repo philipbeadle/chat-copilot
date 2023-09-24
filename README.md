@@ -45,7 +45,8 @@ You will need the following items to run the sample:
 3. Configure Chat Copilot.
 
    ```powershell
-   .\Configure.ps1 -AIService {AI_SERVICE} -APIKey {API_KEY} -Endpoint {AZURE_OPENAI_ENDPOINT}
+
+.\Configure.ps1 -AIService {AI_SERVICE} -APIKey {API_KEY} -Endpoint {AZURE_OPENAI_ENDPOINT}
    ```
 
    - `AI_SERVICE`: `AzureOpenAI` or `OpenAI`.
