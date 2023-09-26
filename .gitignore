@@ -491,4 +491,8 @@ webapi/CopilotChatWebApi.sln
 # Tesseract OCR language data files
 *.traineddata
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c0e6ebe (Upstream merge:)
 webapi/data/
