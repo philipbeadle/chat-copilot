@@ -311,6 +311,7 @@ internal static class SemanticKernelExtensions
     }
 >>>>>>> 6e05b4f (fetch upstream)
 
+<<<<<<< HEAD
             case string x when x.Equals("OpenAI", StringComparison.OrdinalIgnoreCase):
                 var openAIOptions = memoryOptions.GetServiceConfig<OpenAIConfig>(configuration, "OpenAI");
                 return
@@ -319,6 +320,36 @@ internal static class SemanticKernelExtensions
                         AIService = BotEmbeddingConfig.AIServiceType.OpenAI,
                         DeploymentOrModelId = openAIOptions.EmbeddingModel,
                     };
+=======
+    /// <summary>
+    /// Add the embedding backend to the kernel config
+    /// </summary>
+    private static KernelBuilder WithEmbeddingBackend(this KernelBuilder kernelBuilder, AIServiceOptions options)
+    {
+        return options.Type switch
+        {
+            AIServiceOptions.AIServiceType.AzureOpenAI
+                => kernelBuilder.WithAzureTextEmbeddingGenerationService(options.Models.Embedding, options.EmbeddingEndpoint, options.EmbeddingKey),
+            AIServiceOptions.AIServiceType.OpenAI
+                => kernelBuilder.WithOpenAITextEmbeddingGenerationService(options.Models.Embedding, options.EmbeddingKey),
+            _
+                => throw new ArgumentException($"Invalid {nameof(options.Type)} value in '{AIServiceOptions.PropertyName}' settings."),
+        };
+    }
+
+    /// <summary>
+    /// Add the completion backend to the kernel config for the planner.
+    /// </summary>
+    private static KernelBuilder WithPlannerBackend(this KernelBuilder kernelBuilder, AIServiceOptions options)
+    {
+        return options.Type switch
+        {
+            AIServiceOptions.AIServiceType.AzureOpenAI => kernelBuilder.WithAzureChatCompletionService(options.Models.Planner, options.Endpoint, options.Key),
+            AIServiceOptions.AIServiceType.OpenAI => kernelBuilder.WithOpenAIChatCompletionService(options.Models.Planner, options.Key),
+            _ => throw new ArgumentException($"Invalid {nameof(options.Type)} value in '{AIServiceOptions.PropertyName}' settings."),
+        };
+    }
+>>>>>>> c90691f (Setting up for Azure AI)
 
 <<<<<<< HEAD
             default:
@@ -340,7 +371,11 @@ internal static class SemanticKernelExtensions
             AIServiceOptions.AIServiceType.AzureOpenAI
                 => new AzureTextEmbeddingGeneration(options.Models.Embedding, options.EmbeddingEndpoint, options.EmbeddingKey, httpClient: httpClient, loggerFactory: loggerFactory),
             AIServiceOptions.AIServiceType.OpenAI
+<<<<<<< HEAD
                 => new OpenAITextEmbeddingGeneration(options.Models.Embedding, options.EmbeddingKey, httpClient: httpClient, loggerFactory: loggerFactory),
+=======
+                => new OpenAITextEmbeddingGeneration(options.Models.Embedding, options.EmbeddingKey, httpClient: httpClient, loggerFactory: loggerFactoryr),
+>>>>>>> c90691f (Setting up for Azure AI)
             _
                 => throw new ArgumentException("Invalid AIService value in embeddings backend settings"),
         };
