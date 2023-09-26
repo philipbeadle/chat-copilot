@@ -491,6 +491,7 @@ webapi/CopilotChatWebApi.sln
 # Tesseract OCR language data files
 *.traineddata
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
@@ -500,3 +501,8 @@ webapi/data/
 =======
 webapi/data/
 >>>>>>> c90691f (Setting up for Azure AI)
+=======
+
+
+webapi/data/
+>>>>>>> 735a6b42b81c2dfefff2719c940a0be511e577b4
