@@ -290,6 +290,7 @@ internal static class SemanticKernelExtensions
 
         switch (memoryOptions.Retrieval.EmbeddingGeneratorType)
         {
+<<<<<<< HEAD
             case string x when x.Equals("AzureOpenAI", StringComparison.OrdinalIgnoreCase):
             case string y when y.Equals("AzureOpenAIEmbedding", StringComparison.OrdinalIgnoreCase):
                 var azureAIOptions = memoryOptions.GetServiceConfig<AzureOpenAIConfig>(configuration, "AzureOpenAIEmbedding");
@@ -299,6 +300,16 @@ internal static class SemanticKernelExtensions
                         AIService = BotEmbeddingConfig.AIServiceType.AzureOpenAIEmbedding,
                         DeploymentOrModelId = azureAIOptions.Deployment,
                     };
+=======
+            AIServiceOptions.AIServiceType.AzureOpenAI
+                => kernelBuilder.WithAzureTextEmbeddingGenerationService(options.Models.Embedding, options.EmbeddingEndpoint, options.EmbeddingKey),
+            AIServiceOptions.AIServiceType.OpenAI
+                => kernelBuilder.WithOpenAITextEmbeddingGenerationService(options.Models.Embedding, options.EmbeddingKey),
+            _
+                => throw new ArgumentException($"Invalid {nameof(options.Type)} value in '{AIServiceOptions.PropertyName}' settings."),
+        };
+    }
+>>>>>>> 6e05b4f (fetch upstream)
 
             case string x when x.Equals("OpenAI", StringComparison.OrdinalIgnoreCase):
                 var openAIOptions = memoryOptions.GetServiceConfig<OpenAIConfig>(configuration, "OpenAI");
@@ -309,8 +320,30 @@ internal static class SemanticKernelExtensions
                         DeploymentOrModelId = openAIOptions.EmbeddingModel,
                     };
 
+<<<<<<< HEAD
             default:
                 throw new ArgumentException($"Invalid {nameof(memoryOptions.Retrieval.EmbeddingGeneratorType)} value in 'SemanticMemory' settings.");
         }
+=======
+    /// <summary>
+    /// Construct IEmbeddingGeneration from <see cref="AIServiceOptions"/>
+    /// </summary>
+    /// <param name="options">The service configuration</param>
+    /// <param name="httpClient">Custom <see cref="HttpClient"/> for HTTP requests.</param>
+    /// <param name="loggerFactory">Custom <see cref="ILoggerFactory"/> for logging.</param>
+    private static ITextEmbeddingGeneration ToTextEmbeddingsService(this AIServiceOptions options,
+        HttpClient? httpClient = null,
+        ILoggerFactory? loggerFactory = null)
+    {
+        return options.Type switch
+        {
+            AIServiceOptions.AIServiceType.AzureOpenAI
+                => new AzureTextEmbeddingGeneration(options.Models.Embedding, options.EmbeddingEndpoint, options.EmbeddingKey, httpClient: httpClient, loggerFactory: loggerFactory),
+            AIServiceOptions.AIServiceType.OpenAI
+                => new OpenAITextEmbeddingGeneration(options.Models.Embedding, options.EmbeddingKey, httpClient: httpClient, loggerFactory: loggerFactoryr),
+            _
+                => throw new ArgumentException("Invalid AIService value in embeddings backend settings"),
+        };
+>>>>>>> 6e05b4f (fetch upstream)
     }
 }

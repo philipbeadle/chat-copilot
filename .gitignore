@@ -499,3 +499,6 @@ tmp-queues
 # Custom plugins in default directories
 */Skills/NativePlugins
 */Skills/SemanticPlugins
+
+
+webapi/data/
